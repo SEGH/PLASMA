@@ -1,12 +1,9 @@
 MIT License
 
-Copyright (c) 2020 BEN ACKER
-
-Copyright (c) 2020 CHELSEY CRAIG
-
-Copyright (c) 2020 ROMIE HECDIVERT
-
-Copyright (c) 2020 SUSAN HOLLAND
+Copyright (c) 2020 BEN ACKER  
+Copyright (c) 2020 CHELSEY CRAIG  
+Copyright (c) 2020 ROMIE HECDIVERT  
+Copyright (c) 2020 SUSAN HOLLAND  
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

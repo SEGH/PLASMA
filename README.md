@@ -1,6 +1,8 @@
 # <strong>P.L.A.S.M.A.</strong>
 
 ### <strong>P</strong>laylist <strong>L</strong>yrics <strong>A</strong>nd <strong>S</strong>ongs <strong>M</strong>ade <strong>A</strong>ccessible
+
+[Deployed App](https://plasma-playlistdashboard.herokuapp.com)
 ___
 
 ## Description
@@ -84,30 +86,22 @@ ___
 
 ## Contributors
 
-Ben Acker: https://github.com/bendrakeacker
+[Ben Acker](https://github.com/bendrakeacker)
 
-Chelsey Craig: https://github.com/ccraig7321
+[Chelsey Craig](https://github.com/ccraig7321)
 
-Romie Hecdivert: https://github.com/rh9891
+[Romie Hecdivert](https://github.com/rh9891)
 
-Susan Holland: https://github.com/SEGH
+[Susan Holland](https://github.com/SEGH)
 
-___
-
-### Links for Heroku Deployment and GitHub Deployment
-<br>
-Heroku: https://plasma-playlistdashboard.herokuapp.com/
-<!-- https://plasma-playlist.herokuapp.com/login -->
-
-GitHub: https://ccraig7321.github.io/PLASMA/
-<br><br>
-Portfolio Link: 
-<!-- https://ccraig7321.github.io/Responsive-Portfolio/ -->
 ___
 
 ### License
 
-Copyright 2020 CHELSEY CRAIG
+Copyright (c) 2020 BEN ACKER  
+Copyright (c) 2020 CHELSEY CRAIG  
+Copyright (c) 2020 ROMIE HECDIVERT  
+Copyright (c) 2020 SUSAN HOLLAND  
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

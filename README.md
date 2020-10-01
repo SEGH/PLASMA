@@ -1,13 +1,13 @@
-# <strong>P.L.A.S.M.A.</strong>
+# lyricDash
 
-### <strong>P</strong>laylist <strong>L</strong>yrics <strong>A</strong>nd <strong>S</strong>ongs <strong>M</strong>ade <strong>A</strong>ccessible
+[![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [Deployed App](https://plasma-playlistdashboard.herokuapp.com)
 ___
 
 ## Description
 
-With this application users will be able to use the secure sign up for to become a member of a community centered around creating personalized playlists.  Users will be able to select songs and artists that will create a playlist that suites the users needs. While aspects of the application are individualize per user, the user will also be able to explore new music suggestions based off playists from other users in the community.
+This application allows users to create a profile where they can organize playlists and quickly access song lyrics.
 
 ___
 

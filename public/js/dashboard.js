@@ -321,7 +321,7 @@ const getLyrics = (song) => {
           url: queryURL,
           method: "GET"
       }).then(function (lyricData) {
-          //   console.log(lyricData);
+            console.log(lyricData);
           // Set them to lyric section on dashboard
           let lyricP = $("<p>").text(lyricData.content[0].lyrics);
           $("#lyricsCardBody").append(lyricP);

@@ -86,8 +86,8 @@ module.exports = function(app) {
 
   // POST route to find or create new song
   app.post("/api/songs", function(req, res) {
-    console.log("SONGreq.body");
-    console.log(req.body);
+    // console.log("SONGreq.body");
+    // console.log(req.body);
     db.Song.findOrCreate({
       where: { title: req.body.title, artistName: req.body.artistName }
     }).then(function(song) {
@@ -119,24 +119,21 @@ module.exports = function(app) {
     };
 
     axios(settings).then(function (response) {
-      console.log(response.data);
+      // console.log(response.data);
       res.send(response.data);
       });
     })
 
     // Third Party Lyric Search
-  app.get("/api/lyricSearch/:searchTerm", function(req, res) {
-    const queryURL = "https://canarado-lyrics.p.rapidapi.com/lyrics/" + req.params.searchTerm;
+  app.get("/api/lyricSearch/:song/:artist", function(req, res) {
+    console.log(req.body);
+    const queryURL = `https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?&q_track=${req.params.song}&q_artist=${req.params.artist}&apikey=493365c2b793d80eda8f09ed3cbed99d`;
     axios({
       url: queryURL,
-      method: "GET",
-      headers: {
-          "x-rapidapi-host": "canarado-lyrics.p.rapidapi.com",
-          "x-rapidapi-key": process.env.getLyricsPass
-      }
+      method: "GET"
     }).then(function(response) {
-      // console.log(response.data);
-      res.send(response.data);
+      console.log(response.data.message.body);
+      res.send(response.data.message.body.lyrics);
     });
   });
 
@@ -162,7 +159,7 @@ module.exports = function(app) {
         url: queryURL,
         method: "GET"
       }).then( function(response) {
-        console.log(response.data);
+        // console.log(response.data);
         res.send(response.data);
       })
 

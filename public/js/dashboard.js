@@ -1,4 +1,6 @@
-
+// Set search display variables
+let showTitles = false;
+let showArtists = false;
 
 // Search function to find song by its title.
 $("#songSearchButton").on("click", function (event) {
@@ -18,10 +20,10 @@ $("#songSearchButton").on("click", function (event) {
 
     $.ajax(settings).done(function (musicData) {
         for (let i = 0; i < musicData.data.length; i++) {
-            console.log(musicData.data);
-            console.log(musicData.data[i].title);
-            console.log(musicData.data[i].artist.name);
-            console.log(musicData.data[i].album.title);
+            // console.log(musicData.data);
+            // console.log(musicData.data[i].title);
+            // console.log(musicData.data[i].artist.name);
+            // console.log(musicData.data[i].album.title);
 
             // Get specific song information for the current index.
             const song = musicData.data[i];
@@ -73,6 +75,12 @@ $("#songSearchButton").on("click", function (event) {
             $songList.css({ "padding-bottom": "20px" });
         }
         $("#userSongSearchQuery").val("");
+        if (showArtists) {
+            $("#artistResults").addClass("is-hidden");
+            showArtists = false;
+        }
+        $("#titleResults").removeClass("is-hidden");
+        showTitles = true;
     });
 });
 
@@ -155,6 +163,13 @@ $("#artistSearchButton").on("click", function (event) {
             $songList.css({ "padding-bottom": "20px" });
         }
         $("#userArtistSearchQuery").val("");
+        if (showTitles) {
+            $("#titleResults").addClass("is-hidden");
+            showTitles = false;
+        }
+        $("#artistResults").removeClass("is-hidden");
+        showArtists = true;
+
     });
 });
 

@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[Deployed App](https://plasma-playlistdashboard.herokuapp.com)
+[Deployed App](https://lyric-dash.herokuapp.com)
 ___
 
 ## Description

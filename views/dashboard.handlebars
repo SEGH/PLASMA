@@ -35,30 +35,32 @@
         </div>
 </nav>
 
-<!-- Sidebar for PLASMA Dashboard -->
-<div class="columns is-variable is-0">
-        <div class="menu-container px-1 has-background-white" id="sidebarMenuBackground">
-            <div class="menu-wrapper py-1">
-                <aside class="menu" id="sidebarMenu">
-                    <p class="menu-label">
-                        My Playlists
-                    </p>
-                    <ul class="menu-list">
-                        {{#each playlists}}
-                        <li data-id="{{this.id}}" class="playlistListItem">{{this.name}}</li>
-                        {{/each}}
-                    </ul>
-                    <p class="menu-label">
-                        Suggested Playlists
-                    </p>
-                    <ul class="menu-list" id="otherPlaylistsList">
-                    </ul>
-                </aside>
-            </div>
-        </div
+<div class="columns is-variable is-0 p-1">
 
-    <!-- Desktop for PLASMA Dashboard -->
-    <div class="column is-10-desktop is-offset-2-desktop is-9-tablet is-offset-3-tablet is-12-mobile">
+    <!-- Sidebar -->
+    <div class="column is-narrow menu-container px-1 has-background-white" id="sidebarMenuBackground">
+        <div class="menu-wrapper py-1">
+            <aside class="menu" id="sidebarMenu">
+                <p class="menu-label">
+                    My Playlists
+                </p>
+                <ul class="menu-list">
+                    {{#each playlists}}
+                    <li data-id="{{this.id}}" class="playlistListItem">{{this.name}}</li>
+                    {{/each}}
+                </ul>
+                <p class="menu-label">
+                    Suggested Playlists
+                </p>
+                <ul class="menu-list" id="otherPlaylistsList">
+                </ul>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="column" id="dashboard">
+
         <div class="p-1">
             <div class="columns is-variable is-desktop">
                 <div class="column">
@@ -117,7 +119,8 @@
         </div>
 
         <div class="columns is-variable">
-            <div class="column is-4-desktop is-6-tablet">
+
+            <div class="column is-6-desktop">
                 <article class="message is-info">
                     <div class="message-header" id="songCardHeader">
                         <p id="selectedPlaylist">Playlist Tracks</p>
@@ -131,7 +134,36 @@
                 </article>
             </div>
 
-            <div class="column is-4-desktop is-6-tablet">
+            <div class="column is-6-desktop is-hidden" id="titleResults">
+                <article class="message is-success">
+                    <div class="message-header" id="songSearchResultsCardHeader">
+                        <p>Search Results for Songs by Title</p>
+                        {{!-- <button class="delete" aria-label="delete" id="songClearButton"></button> --}}
+                    </div>
+                    <div class="message-body" id="songSearchResultsCardBody">
+
+                    </div>
+                </article>
+            </div>
+
+            <div class="column is-6-desktop is-hidden" id="artistResults">
+                <article class="message is-success">
+                    <div class="message-header" id="artistSearchResultsCardHeader">
+                        <p>Search Results for Songs by Artist</p>
+                        {{!-- <button class="delete" aria-label="delete" id="artistClearButton"></button> --}}
+                    </div>
+                    <div class="message-body" id="artistSearchResultsCardBody">
+
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+
+        <div class="columns is-variable">
+
+            <div class="column is-3-desktop">
                 <article class="message is-success">
                     <div class="message-header" id="artistCardHeader">
                         <p>Artist/Album Information</p>
@@ -143,23 +175,7 @@
                 </article>
             </div>
 
-            <div class="column is-4-desktop is-6-tablet">
-                <article class="message is-success">
-                    <div class="message-header" id="songSearchResultsCardHeader">
-                        <p>Search Results for Songs by Title</p>
-                        {{!-- <button class="delete" aria-label="delete" id="songClearButton"></button> --}}
-                    </div>
-                    <div class="message-body" id="songSearchResultsCardBody">
-
-                    </div>
-                </article>
-            </div>
-        </div>
-
-
-        <div class="columns is-variable is-10-desktop is-offset-2-desktop">
-
-            <div class="column is-8-desktop">
+            <div class="column is-9-desktop">
                 <article class="message is-success">
                     <div class="message-header" id="lyricsCardHeader">
                         <p>Song Lyrics</p>
@@ -170,17 +186,10 @@
                 </article>
             </div>
 
-            <div class="column">
-                <article class="message is-success">
-                    <div class="message-header" id="artistSearchResultsCardHeader">
-                        <p>Search Results for Songs by Artist</p>
-                        {{!-- <button class="delete" aria-label="delete" id="artistClearButton"></button> --}}
-                    </div>
-                    <div class="message-body" id="artistSearchResultsCardBody">
-
-                    </div>
-                </article>
-            </div>
         </div>
 
-        <script src="js/dashboard.js" charset="utf-8"></script>
+    </div>
+
+</div>
+
+<script src="js/dashboard.js" charset="utf-8"></script>

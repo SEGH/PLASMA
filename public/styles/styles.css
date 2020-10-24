@@ -16,6 +16,10 @@ html, body {
     font-family: "Questrial", sans-serif;
 }
 
+#dashboard {
+    max-height: 100vh;
+    overflow: scroll;
+}
 #makePlaylistButton {
     font-family: "Questrial", sans-serif;
     font-weight: bold;
@@ -178,14 +182,14 @@ html, body {
     padding-bottom: 0.75rem;
 }
 
-.menu-container {
+/* .menu-container {
     position: fixed;
     top: 52px;
     margin: auto;
     min-width: 300px;
     z-index: 10;
     background-color: transparent;
-}
+} */
 
 @media (min-width:1024px) {
     .menu-container {
@@ -210,8 +214,14 @@ html, body {
     margin-top: 10px;
 }
 
-#playlistCardBody, #songCardBody, #lyricsCardBody, #artistCardBody, #songSearchResultsCardBody, #artistSearchResultsCardBody, #searchBarsCardBody  {
+#playlistCardBody, #lyricsCardBody, #artistCardBody,  #searchBarsCardBody  {
     background-color: #FCBEBF;
+}
+
+#songCardBody, #songSearchResultsCardBody, #artistSearchResultsCardBody {
+    background-color: #FCBEBF;
+    height: 15em;
+    overflow: scroll;
 }
 
 #songCardBody, #lyricsCardBody, #artistCardBody, #songSearchResultsCardBody, #artistSearchResultsCardBody, #dashboardUserInfo, #playlistCardBody {

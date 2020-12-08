@@ -233,9 +233,9 @@ const getOtherPlaylists = () => {
     $.ajax("/api/playlists/otherusers", {
         type: "GET"
     }).then(function (data) {
-        console.log("all user playlists");
-        console.log(data);
-        for (let i = 0; i < 5; i++) {
+        // console.log("all user playlists");
+        // console.log(data);
+        for (let i = 0; i < data.length; i++) {
             let newItem = $("<li>").text(data[i].name);
             newItem.attr({ "data-id": data[i].id });
             newItem.addClass("playlistListItem");

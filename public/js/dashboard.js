@@ -15,7 +15,7 @@ $("#songSearchButton").on("click", function (event) {
         crossDomain: true,
         url: queryURL,
         method: "GET",
-      
+
     };
 
     $.ajax(settings).done(function (musicData) {
@@ -99,7 +99,7 @@ $("#artistSearchButton").on("click", function (event) {
     console.log("I was clicked!");
     searchTerm = $("#userArtistSearchQuery").val();
     const queryURL = "/api/artistSearch/" + searchTerm;
-        
+
 
     const settings = {
         url: queryURL,
@@ -184,6 +184,7 @@ $("#artistClearButton").on("click", artistClear);
 // Variables to set selected playlist and song
 let selectedPlaylistName = $(".playlistListItem:first").text();
 let selectedPlaylistId = $(".playlistListItem:first").data("id");
+let canEditPlaylist;
 let selectedSong;
 let selectedArtist;
 let songIsSelected = false;
@@ -212,6 +213,8 @@ $(document).on("click", ".playlistListItem", function () {
     let playlistId = $(this).data("id");
     selectedPlaylistName = playlistName;
     selectedPlaylistId = playlistId;
+    canEditPlaylist = $(this).data("editable");
+    console.log(`Can edit: ${canEditPlaylist}`);
     selectPlaylist(selectedPlaylistName, selectedPlaylistId);
 });
 
@@ -238,6 +241,7 @@ const getOtherPlaylists = () => {
         for (let i = 0; i < data.length; i++) {
             let newItem = $("<li>").text(data[i].name);
             newItem.attr({ "data-id": data[i].id });
+            newItem.attr({ "data-editable": false });
             newItem.addClass("playlistListItem");
             $("#otherPlaylistsList").append(newItem);
         }
@@ -285,40 +289,42 @@ const renderPlaylistSongs = (playlistId) => {
 
 // Event listener and function to add song
 $(document).on("click", ".addSongBtn", function () {
-    let newSong = {
-        title: $(this).data("title"),
-        artistName: $(this).data("artist")
-    }
-    // console.log("NEWSONG");
-    // console.log(newSong);
-    $.ajax("/api/songs", {
-        type: "POST",
-        data: newSong
-    }).then(function (songData) {
-        // console.log("SONG DATA");
-        // console.log(songData);
-        let newPlaylistSong = {
-            PlaylistId: selectedPlaylistId,
-            SongId: songData[0].id
+    if (canEditPlaylist) {
+        let newSong = {
+            title: $(this).data("title"),
+            artistName: $(this).data("artist")
         }
-        console.log(newPlaylistSong);
-        $.ajax("/api/playlistSongs", {
+        // console.log("NEWSONG");
+        // console.log(newSong);
+        $.ajax("/api/songs", {
             type: "POST",
-            data: newPlaylistSong
-        }).then(function (playlistSong) {
-            // console.log(playlistSong);
-            let songTitleAndArtist = newSong.title + newSong.artistName;
-            selectedSong = songTitleAndArtist;
-            songIsSelected = true;
-            renderPlaylistSongs(selectedPlaylistId);
+            data: newSong
+        }).then(function (songData) {
+            // console.log("SONG DATA");
+            // console.log(songData);
+            let newPlaylistSong = {
+                PlaylistId: selectedPlaylistId,
+                SongId: songData[0].id
+            }
+            console.log(newPlaylistSong);
+            $.ajax("/api/playlistSongs", {
+                type: "POST",
+                data: newPlaylistSong
+            }).then(function (playlistSong) {
+                // console.log(playlistSong);
+                let songTitleAndArtist = newSong.title + newSong.artistName;
+                selectedSong = songTitleAndArtist;
+                songIsSelected = true;
+                renderPlaylistSongs(selectedPlaylistId);
+            });
         });
-    });
+    }
 });
 
 // Event listener for song name
 $(document).on("click", ".playlistSongItem", function () {
     selectedSong = $(this).data("title");
-     $(this).data("artist");
+    $(this).data("artist");
     var song = $(this).attr("data-title");
     var artist = $(this).attr("data-artist");
     // console.log(selectedSong);
@@ -329,28 +335,28 @@ $(document).on("click", ".playlistSongItem", function () {
 
 // Lyric API
 const getLyrics = (song, artist) => {
-  $("#lyricsCardBody").empty();
-  if (song === "") {
-      let lyricP = $("<p>").text("Select a song to sing along!");
-      $("#lyricsCardBody").append(lyricP);
-  } else {
-      let queryURL = `/api/lyricSearch/${song}/${artist}`;
-      $.ajax({
-          url: queryURL,
-          method: "GET"
-      }).then(function (lyricData) {
-          console.log(lyricData.lyrics_copyright);
-          // Set them to lyric section on dashboard
-          let lyricP;
-          if (lyricData.lyrics_body !== "") {
-            lyricP = $("<p>").text(lyricData.lyrics_body);
-          } else {
-            lyricP = $("<p>").text(lyricData.lyrics_copyright);
-          }
+    $("#lyricsCardBody").empty();
+    if (song === "") {
+        let lyricP = $("<p>").text("Select a song to sing along!");
+        $("#lyricsCardBody").append(lyricP);
+    } else {
+        let queryURL = `/api/lyricSearch/${song}/${artist}`;
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (lyricData) {
+            console.log(lyricData.lyrics_copyright);
+            // Set them to lyric section on dashboard
+            let lyricP;
+            if (lyricData.lyrics_body !== "") {
+                lyricP = $("<p>").text(lyricData.lyrics_body);
+            } else {
+                lyricP = $("<p>").text(lyricData.lyrics_copyright);
+            }
 
-          $("#lyricsCardBody").append(lyricP);
-      });
-  }
+            $("#lyricsCardBody").append(lyricP);
+        });
+    }
 };
 
 function lyricsClear() {

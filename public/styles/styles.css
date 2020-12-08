@@ -272,7 +272,16 @@ a {
     background-color: #FCBEBF;
 }
 
-.playlistSongItem:hover, .playlistListItem:hover {
+.playlistSongItem:hover, .playlistListItem:hover, .songDeleteBtn:hover {
     cursor: pointer;
     color: #235656;
+}
+
+.playlistSongItem {
+    display: flex;
+}
+
+.songDeleteBtn {
+    margin-left: auto;
+    margin-right: 0;
 }

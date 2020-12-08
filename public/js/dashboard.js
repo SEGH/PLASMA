@@ -61,8 +61,14 @@ function renderPlaylistSongs(playlistId) {
             data.forEach(song => {
                 // console.log(song);
                 let newListItem = $("<li>").text(`${song.title} by ${song.artistName}`);
-                newListItem.attr({ "data-title": song.title, "data-artist": song.artistName });
+                newListItem.attr({ "data-title": song.title, "data-artist": song.artistName, "data-id": song.id });
                 newListItem.addClass("playlistSongItem");
+
+                if (canEditPlaylist) {
+                    let deleteButton = $("<i>").addClass("fas fa-trash songDeleteBtn").attr({ "data-id": song.id, "data-playlist": playlistId });
+                    newListItem.append(deleteButton);
+                }
+
                 $("#playlistSongsList").append(newListItem);
             });
 
@@ -151,6 +157,21 @@ $(document).on("click", ".addSongBtn", function () {
         });
     }
 });
+
+// Event listener to remove song from playlist
+$(document).on("click", ".songDeleteBtn", function () {
+    let playlistSong = {
+        playlistId: $(this).data("playlist"),
+        songId: $(this).data("id")
+    }
+    console.log(`remove song id ${playlistSong.songId} from playlist ${playlistSong.playlistId}`);
+    $.ajax("/api/playlistSongs", {
+        type: "DELETE",
+        data: playlistSong
+    }).then(function (data) {
+        renderPlaylistSongs(playlistSong.playlistId);
+    })
+})
 
 ///---*** Song Search API ***---///
 

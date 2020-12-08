@@ -103,6 +103,19 @@ module.exports = function(app) {
     });
   });
 
+  // DELETE route to delete playlistSong
+  app.delete("/api/playlistSongs", function(req, res) {
+    db.PlaylistSong.destroy({
+      where: {
+        PlaylistId: req.body.playlistId,
+        SongId: req.body.songId
+      }
+    }).then(function(playlistSong) {
+      res.json(playlistSong);
+    });
+  });
+
+  // Third Partry API Song search
   app.get("/api/songSearch/:searchTerm", function(req, res) {
     const queryURL =
         "https://deezerdevs-deezer.p.rapidapi.com/search/track?q=" + req.params.searchTerm;
@@ -165,5 +178,4 @@ module.exports = function(app) {
 
 
   })
-  // DELETE route to delete playlistSong
 };

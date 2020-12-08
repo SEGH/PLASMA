@@ -184,7 +184,7 @@ $("#artistClearButton").on("click", artistClear);
 // Variables to set selected playlist and song
 let selectedPlaylistName = $(".playlistListItem:first").text();
 let selectedPlaylistId = $(".playlistListItem:first").data("id");
-let canEditPlaylist;
+let canEditPlaylist = true;
 let selectedSong;
 let selectedArtist;
 let songIsSelected = false;
@@ -223,6 +223,7 @@ const selectPlaylist = (name, id) => {
     if ((name === undefined) || (id === undefined)) {
         let alert = $("<h6>").text("Create a new playlist to get started!");
         $("#playlistSongsList").append(alert);
+        canEditPlaylist = false;
     } else {
         $("#selectedPlaylist").text(name);
         $("#selectedPlaylist").attr("data-id", id);
